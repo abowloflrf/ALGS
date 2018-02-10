@@ -1,0 +1,9 @@
+project(leetcode)
+cmake_minimum_required (VERSION 2.6)
+set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CXX_COMPILER "g++")
+
+aux_source_directory(. DIR_MAIN)
+add_subdirectory(src)
+add_executable(Main ${DIR_MAIN})
+target_link_libraries(Main Solutions)

@@ -1,1 +1,3 @@
 *.o
+.vscode/
+leetcode/build/
