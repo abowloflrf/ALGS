@@ -1,11 +1,22 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "./src/001TwoSum.cpp"
+#include "./src/002AddTwoNumbers.cpp"
+
 int main()
 {
+    //Solution test = Solution();
+    ListNode *nodeA, *nodeB;
+    nodeA = new ListNode(2);
+    nodeA->next = new ListNode(4);
+    nodeA->next->next = new ListNode(3);
+
+    nodeB = new ListNode(5);
+    nodeB->next = new ListNode(6);
+    nodeB->next->next = new ListNode(4);
+    nodeB->next->next->next = new ListNode(5);
+
     Solution test = Solution();
-    std::vector<int> v_data = {2, 7, 11, 15, 21};
-    std::vector<int> v_result = test.twoSum2(v_data, 26);
+    ListNode *nodeResult = test.addTwoNumbers(nodeA, nodeB);
     return 0;
 }
