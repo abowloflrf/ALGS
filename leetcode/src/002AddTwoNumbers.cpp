@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cmath>
-
 struct ListNode
 {
     int val;
