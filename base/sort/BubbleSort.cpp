@@ -3,6 +3,7 @@ using namespace std;
 void bubble_sort(int arr[], int len)
 {
     int i, j;
+    //遍历，比较大小，若后者较小则交换，直到没有要交换的说明已经排序完毕
     for (i = 0; i < len - 1; i++)
         for (j = 0; j < len - 1 - i; j++)
             if (arr[j] > arr[j + 1])
