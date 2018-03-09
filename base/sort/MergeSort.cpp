@@ -60,7 +60,7 @@ void merge_sort(int arr[], int l, int r)
         int m = l + (r - l) / 2;
         //合并前一半
         merge_sort(arr, l, m);
-        //合并后一般
+        //合并后一半
         merge_sort(arr, m + 1, r);
         //执行比较并合并
         merge(arr, l, m, r);
