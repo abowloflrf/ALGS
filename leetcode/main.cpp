@@ -1,22 +1,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "./src/002AddTwoNumbers.cpp"
+#include "./src/007ReverseInteger.cpp"
 
-int main()
-{
-    //Solution test = Solution();
-    ListNode *nodeA, *nodeB;
-    nodeA = new ListNode(2);
-    nodeA->next = new ListNode(4);
-    nodeA->next->next = new ListNode(3);
-
-    nodeB = new ListNode(5);
-    nodeB->next = new ListNode(6);
-    nodeB->next->next = new ListNode(4);
-    nodeB->next->next->next = new ListNode(5);
-
+int main() {
     Solution test = Solution();
-    ListNode *nodeResult = test.addTwoNumbers(nodeA, nodeB);
+    int a = test.reverse(123);
+    int b = test.reverse(120);
+    int c = test.reverse(-333);
+    int d = test.reverse(-550);
+    int e = test.reverse(-2147483412);
+    int f = test.reverse(1534236469);
     return 0;
 }
