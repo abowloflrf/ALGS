@@ -1,33 +1,32 @@
+#include <cmath>
 #include <iostream>
 class Solution {
    public:
     int reverse(int x) {
-        char str[12] = {0};
-        sprintf(str, "%d", x);
+        bool isPositive = x < 0 ? false : true;
+        //将整型数据转为字符串储存
+        char str[11] = {0};
+        sprintf(str, "%d", abs(x));
 
-        bool isPositive = str[0] == '-' ? false : true;
-        int index = isPositive ? 0 : 1;
-        int p = 1;
-        unsigned int result = 0;
+        int index = 0;
+        //定义64位的int避免加法时溢出
+        long long result = 0;
         while (str[index] != '\0') {
-            if (p == 1000000000) {
-                //判断结果溢出
-                if ((double)(str[index] - '0') * p > 0x7FFFFFFF - result) {
-                    return 0;
-                }
-            }
-            result += (int)(str[index] - '0') * p;
+            result += (int)(str[index] - '0') * pow(10, index);
             index++;
-            p *= 10;
         }
-        return isPositive ? result : -result;
+        //结果溢出返回0
+        if (result > INT32_MAX) return 0;
+        return isPositive ? (int)result : (int)-result;
     }
+
+    //代码更加精简的写法
     int reverse2(int x) {
-        double res = 0;
+        long long result = 0;
         while (x) {
-            res = res * 10 + x % 10;
+            result = result * 10 + x % 10;
             x /= 10;
         }
-        return (res < INT_MIN || res > INT_MAX) ? 0 : (int)res;
+        return (result < INT32_MIN || result > INT32_MAX) ? 0 : (int)result;
     }
 };
