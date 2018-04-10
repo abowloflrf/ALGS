@@ -1,11 +1,11 @@
-// #include "src/009PalindromeNumber.cpp"
 #include <string>
-#include "src/013RomanToInteger.cpp"
-
+#include <vector>
+#include "src/014LongestCommonPrefix.cpp"
+using namespace std;
 int main() {
     Solution test = Solution();
-    int a = test.romanToInt("XXI");   // 21
-    int b = test.romanToInt("XIV");   // 14
-    int c = test.romanToInt("XCIX");  // 99
+    vector<string> vec = {"abcdef", "abcgh", "abcdefghj", "abcdfq", "abcdexy"};
+    string longestCommonStr = test.longestCommonPrefix(vec);
+    cout << longestCommonStr << endl;
     return 0;
 }
