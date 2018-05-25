@@ -3,6 +3,7 @@
 #include <unordered_map>
 class Solution {
    public:
+    //在数据较少时使用 switch case 比 hashmap 较好
     int roman(char c) {
         switch (c) {
             case 'I':
