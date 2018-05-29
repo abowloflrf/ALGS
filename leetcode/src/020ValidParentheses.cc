@@ -5,20 +5,21 @@ class Solution {
    public:
     bool isValid(string s) {
         if (s == "") return true;
-        int index = 0;
         stack<char> mStack;
         for (char &c : s) {
-            if (mStack.empty()) {
+            if (c == '{' || c == '[' || c == '(')
                 mStack.push(c);
-            } else {
-                int flag = abs(mStack.top() - c);
-                if (flag != 0 && flag <= 2)
-                    mStack.pop();
-                else
-                    mStack.push(c);
+            else if (c == '}') {
+                if (mStack.empty() || mStack.top() != '{') return false;
+                mStack.pop();
+            } else if (c == ']') {
+                if (mStack.empty() || mStack.top() != '[') return false;
+                mStack.pop();
+            } else if (c == ')') {
+                if (mStack.empty() || mStack.top() != '(') return false;
+                mStack.pop();
             }
         }
-        if (mStack.empty()) return true;
-        return false;
+        return mStack.empty();
     }
 };
