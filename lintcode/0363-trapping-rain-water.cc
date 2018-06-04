@@ -74,6 +74,36 @@ class Solution {
         }
         return cap;
     }
+    //这个为九章的官方解答，更加移动
+    int trapRainWater(vector<int> &heights) {
+        //首先遍历整个heights找到最高点与最高点坐标
+        int maxHeight = 0, maxIndex;
+        for (int i = 0; i < heights.size(); i++) {
+            if (heights[i] > maxHeight) {
+                maxHeight = heights[i];
+                maxIndex = i;
+            }
+        }
+        //开始计算
+        int sum = 0;
+        int leftMaxHeight = 0;  //保存左边的最高点
+        for (int i = 0; i < maxIndex; i++) {
+            if (leftMaxHeight > heights[i]) {
+                sum += leftMaxHeight - heights[i];
+            }
+            leftMaxHeight = max(leftMaxHeight, heights[i]);
+        }
+
+        int rightMaxHeight = 0; //保存右边的最高点
+        for (int i = heights.size() - 1; i > maxIndex; i--) {
+            if (rightMaxHeight > heights[i]) {
+                sum += rightMaxHeight - heights[i];
+            }
+            rightMaxHeight = max(rightMaxHeight, heights[i]);
+        }
+
+        return sum;
+    }
 };
 
 int main(int argc, char const *argv[]) {
