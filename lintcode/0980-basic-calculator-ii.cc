@@ -24,11 +24,12 @@ class Solution {
         int num = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            if (s[i] == ' ') continue;
+            // if (s[i] == ' ') continue;
             char c = s[i];
             if (c >= '0' && c <= '9') num = num * 10 + (c - '0');
             //若不是数字，即遇到运算符
-            if (!(c >= '0' && c <= '9') || i + 1 == s.length()) {
+            if ((c != ' ' && !(c >= '0' && c <= '9')) || i + 1 == s.length()) {
+                //这里先结算上一个运算符的结果
                 if (flag == '+')
                     mStack.push(num);
                 else if (flag == '-')
@@ -42,6 +43,7 @@ class Solution {
                     mStack.pop();
                     mStack.push(temp / num);
                 }
+                //保存当前运算符，后面的数字计算完成后再进入这个if完成运算
                 flag = c;
                 num = 0;
                 continue;

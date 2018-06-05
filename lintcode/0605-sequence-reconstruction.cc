@@ -21,14 +21,15 @@ class Solution {
     bool sequenceReconstruction(vector<int> &org, vector<vector<int>> &seqs) {
         int size = org.size();                         //目标序列长度
         unordered_map<int, unordered_set<int>> graph;  //将seqs构造为一个图
-        vector<int> degrees(size + 1);  //保存每个节点的入度
+        vector<int> degrees(size + 1);  //保存每个节点的入度，没有0因此要+1
         int maxSize = 0;
         for (auto seq : seqs) {
             maxSize = max(maxSize, (int)seq.size());
             for (int i = 0; i < seq.size(); i++) {
                 if (seq[i] < 1 || seq[i] > size)
-                    return false;  // org为1-的d正整数序列，若存在之外的数则非法
-                if (i == 0) continue;
+                    return false;  // org为1-n的正整数序列，若存在之外的数则非法
+                if (i == 0)
+                    continue;  //每个序列中的第0个是没有节点指向它的直接跳过
                 if (graph[seq[i - 1]].count(seq[i]) == 0) {
                     graph[seq[i - 1]].insert(seq[i]);  //构造图
                     degrees[seq[i]]++;                 //构造度数

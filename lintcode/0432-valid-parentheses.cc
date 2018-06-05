@@ -4,7 +4,7 @@ using namespace std;
 bool isValid(string s) {
     if (s == "") return true;
     stack<char> mStack;
-    for (char &c : s) {
+    for (char c : s) {
         if (c == '{' || c == '[' || c == '(')
             mStack.push(c);
         else if (c == '}') {
