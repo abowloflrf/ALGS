@@ -34,6 +34,7 @@ class Vector2D {
     }
 
     bool hasNext() {
+        //到这个vector的尾部时要进入下一个vector
         while (cur != end && cur->size() == n) {
             cur++;
             n = 0;

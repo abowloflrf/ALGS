@@ -1,7 +1,9 @@
 // LCS 两个字符串的最长公共子序列
 
+#include <iostream>
 #include <string>
 #include <vector>
+
 using namespace std;
 class Solution {
    public:
@@ -30,8 +32,8 @@ class Solution {
 
 int main(int argc, char const *argv[]) {
     Solution s = Solution();
-    string s1 = "ABCD";
-    string s2 = "EACB";
+    string s1 = "ABCBDAB";
+    string s2 = "BDCABA";
     int res = s.longestCommonSubsequence(s1, s2);
     return 0;
 }
