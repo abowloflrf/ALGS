@@ -26,6 +26,7 @@ class Solution {
         for (int i = 0; i < s.length(); i++) {
             // if (s[i] == ' ') continue;
             char c = s[i];
+            //遇到数字，与前面一位数字合并进位
             if (c >= '0' && c <= '9') num = num * 10 + (c - '0');
             //若不是数字，即遇到运算符
             if ((c != ' ' && !(c >= '0' && c <= '9')) || i + 1 == s.length()) {
