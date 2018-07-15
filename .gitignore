@@ -1,4 +1,6 @@
 *.o
 *.out
 *.exe
-.vscode/
+.vscode
+.idea
+cmake-build-debug
