@@ -42,9 +42,26 @@ int getNumber(vector<int> numbers) {
     return result;
 }
 
+int getNumber_2(vector<int> numbers) {
+    int length = numbers.size();
+
+    int target = numbers[0];
+    int times = 1;
+    for (int i = 0; i < length; i++) {
+        if (times == 0) {
+            target = numbers[i];
+            times = 1;
+        } else if (target == numbers[i])
+            times++;
+        else
+            times--;
+    }
+    return target;
+}
+
 int main() {
     vector<int> data = {1, 2, 3, 2, 2, 5, 4, 2};
-    int res = getNumber(data);
+    int res = getNumber_2(data);
     cout << res << endl;
     return 0;
 }
