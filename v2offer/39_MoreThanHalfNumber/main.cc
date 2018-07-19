@@ -14,7 +14,10 @@ int partition(vector<int>& numbers, int start, int end) {
         while (numbers[right] >= target && left < right) right--;
         swap(numbers[left], numbers[right]);
     }
-    if (numbers[left] >= numbers[end]) swap(numbers[left], numbers[end]);
+    if (numbers[left] >= numbers[end])
+        swap(numbers[left], numbers[end]);
+    else
+        left++;
     return left;
 }
 
