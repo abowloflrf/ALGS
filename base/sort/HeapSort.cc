@@ -3,11 +3,12 @@
 
 using namespace std;
 
+//构建堆的过程时间复杂度为O(n)
 void maxHeapify(vector<int>& data, int i, int n) {
     //得到左右的索引
     int indexMax = i, indexLeft = 2 * i + 1, indexRight = 2 * (i + 1);
 
-    //得到左右与跟哪个值最大
+    //得到左右哪个值最大
     if (indexLeft < n && data[i] < data[indexLeft]) {
         indexMax = indexLeft;
     }
@@ -21,6 +22,7 @@ void maxHeapify(vector<int>& data, int i, int n) {
     }
 }
 
+//堆排序的时间复杂度为O(nlogn)
 void heapSort(vector<int>& data) {
     // 从顶部开始构建堆
     int heapSize = data.size();
