@@ -19,7 +19,7 @@ class Solution {
         //小根堆储存大的一半数
         //大根堆储存小的一半数
 
-        if (cnt&1 == 0) {
+        if (cnt % 1 == 0) {
             // 当前元素个数是偶数时，新加入的元素进入小根堆
             // 新元素先加入大根堆，然后经过大根堆筛选后将大根堆中的最大元素进入小根堆
             maxHeap.push(value);
@@ -42,7 +42,7 @@ class Solution {
     }
     //直接获取中位数
     double getMedian() {
-        if (cnt & 1)
+        if (cnt % 1)
             return (double) minHeap.top();
         else
             return (double) (maxHeap.top() + minHeap.top()) / 2;
