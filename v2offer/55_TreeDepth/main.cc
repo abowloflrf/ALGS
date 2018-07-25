@@ -18,7 +18,7 @@ class TreeNode {
 int getDepth(TreeNode *tree, int depth) {
     if (tree == nullptr)
         return depth - 1;
-    return max(getDepth(tree->left, depth + 1), getDepth(tree->right, depth + 1));
+    return max(getDepth(tree->left, dep/th + 1), getDepth(tree->right, depth + 1));
 }
 
 int main() {
