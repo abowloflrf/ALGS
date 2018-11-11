@@ -15,6 +15,7 @@ class Solution {
         for (int i = 0; i < size; i++) {
             //清除头部空字符
             if (appendStr.empty() && s[i] == ' ') continue;
+            //字符串中间的空格若有多个，减少到一个
             if (s[i] == ' ') {
                 if (appendStr.empty())
                     continue;
