@@ -5,14 +5,15 @@
 #ifndef ALGS_LIST_H
 #define ALGS_LIST_H
 
+// ListNode 单向链表节点
 class ListNode {
   public:
     int val;
     ListNode *next;
     ListNode(int val) {
         this->val = val;
-        this->next = NULL;
+        this->next = nullptr;
     }
 };
 
-#endif //ALGS_LIST_H
+#endif // ALGS_LIST_H
