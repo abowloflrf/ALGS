@@ -52,16 +52,12 @@ class Solution {
                     }
                 }
                 // 翻转i-1右边的排列
-                for (int k = 0; k < (size - i) / 2; k++) {
-                    swap(nums[i + k], nums[size - 1 - k]);
-                }
+                reverse(nums.begin() + i, nums.end());
                 return;
             }
         }
         // 遍历一遍都没有找到要交换的数字，说明此排列已经为降序排列的最大值，则翻转为最小值
-        for (int i = 0; i < size / 2; i++) {
-            swap(nums[i], nums[size - 1 - i]);
-        }
+        reverse(nums.begin(), nums.end());
     }
 };
 // @lc code=end
