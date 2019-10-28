@@ -46,7 +46,7 @@ class Solution {
     vector<vector<int>> subsets(vector<int> &nums) {
         const int size = nums.size();
         vector<vector<int>> res{{}};
-        for (auto n: nums) {
+        for (auto n : nums) {
             vector<vector<int>> added;
             for (auto r : res) {
                 vector<int> newRes(r);
