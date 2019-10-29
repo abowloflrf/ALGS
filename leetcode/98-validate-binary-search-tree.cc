@@ -72,18 +72,16 @@ class Solution {
 
   private:
     bool inValid = false;
-    TreeNode *a;
-    TreeNode *b;
+    TreeNode *last;
     void inOrderRecursive(TreeNode *node) {
         if (node == nullptr || inValid)
             return;
         inOrderRecursive(node->left);
-        if (b && b->val >= node->val) {
+        if (last && last->val >= node->val) {
             inValid = true;
             return;
         }
-        a = b;
-        b = node;
+        last = node;
         inOrderRecursive(node->right);
     }
 };
@@ -93,8 +91,8 @@ class Solution2 {
   public:
     bool isValidBST(TreeNode *root) {
         // BST DFS 中序遍历，就是一个递增的数列
-        // 非递归方法，使用了额外的空间O(n)
-        vector<int> res;
+        // 非递归方法，使用了额外的空间stack O(n)
+        TreeNode *last = nullptr;
         stack<TreeNode *> s;
         TreeNode *node = root;
         while (node != nullptr || !s.empty()) {
@@ -104,14 +102,12 @@ class Solution2 {
             }
             node = s.top();
             s.pop();
-            res.push_back(node->val);
-            node = node->right;
-        }
-        if (res.size() < 2)
-            return true;
-        for (int i = 1; i < res.size(); i++) {
-            if (res[i] <= res[i - 1])
+
+            if (last && last->val >= node->val)
                 return false;
+            last = node;
+
+            node = node->right;
         }
         return true;
     }
