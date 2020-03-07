@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class BinaryTreeNode {
-   public:
+class TreeNode {
+  public:
     int val;
-    BinaryTreeNode *left;
-    BinaryTreeNode *right;
-    BinaryTreeNode(int val) {
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int val) {
         this->val = val;
         this->left = nullptr;
         this->right = nullptr;
@@ -18,8 +18,8 @@ class BinaryTreeNode {
 };
 
 class Traversal {
-   public:
-    Traversal(BinaryTreeNode *t) : tree(t) {}
+  public:
+    Traversal(TreeNode *t) : tree(t) {}
     //递归前序遍历
     vector<int> preOrder() {
         result.clear();
@@ -29,8 +29,8 @@ class Traversal {
     //非递归前序遍历
     vector<int> preOrderNoRecursive() {
         result.clear();
-        stack<BinaryTreeNode *> s;
-        BinaryTreeNode *node = tree;
+        stack<TreeNode *> s;
+        TreeNode *node = tree;
         while (node != nullptr || !s.empty()) {
             while (node != nullptr) {
                 result.push_back(node->val);
@@ -52,8 +52,8 @@ class Traversal {
     //非递归中序遍历
     vector<int> inOrderNoRecursive() {
         result.clear();
-        stack<BinaryTreeNode *> s;
-        BinaryTreeNode *node = tree;
+        stack<TreeNode *> s;
+        TreeNode *node = tree;
         while (node != nullptr || !s.empty()) {
             while (node != nullptr) {
                 s.push(node);
@@ -75,9 +75,9 @@ class Traversal {
     //非递归后序遍历
     vector<int> postOrderNoRecursive() {
         result.clear();
-        stack<BinaryTreeNode *> s;
-        BinaryTreeNode *node = tree;
-        BinaryTreeNode *prev = nullptr;  //上次访问的节点
+        stack<TreeNode *> s;
+        TreeNode *node = tree;
+        TreeNode *prev = nullptr; //上次访问的节点
         //先保存向左子树保存节点到栈中
         while (node != nullptr) {
             s.push(node);
@@ -104,17 +104,20 @@ class Traversal {
     //层次遍历
     vector<vector<int>> levelTravesal() {
         levelResult.clear();
-        if (tree == nullptr) return levelResult;
+        if (tree == nullptr)
+            return levelResult;
         vector<int> levelNodes;
-        queue<BinaryTreeNode *> q;
-        q.push(tree);  //根节点加入队列
+        queue<TreeNode *> q;
+        q.push(tree); //根节点加入队列
         while (!q.empty()) {
             int levelSize = q.size();
             for (int i = 0; i < levelSize; i++) {
-                BinaryTreeNode *node = q.front();
+                TreeNode *node = q.front();
                 levelNodes.push_back(node->val);
-                if (node->left != nullptr) q.push(node->left);
-                if (node->right != nullptr) q.push(node->right);
+                if (node->left != nullptr)
+                    q.push(node->left);
+                if (node->right != nullptr)
+                    q.push(node->right);
                 q.pop();
             }
             levelResult.push_back(levelNodes);
@@ -123,24 +126,27 @@ class Traversal {
         return levelResult;
     }
 
-   private:
-    BinaryTreeNode *tree;
+  private:
+    TreeNode *tree;
     vector<int> result;
     vector<vector<int>> levelResult;
-    void preOrderRecursive(BinaryTreeNode *node) {
-        if (node == nullptr) return;
+    void preOrderRecursive(TreeNode *node) {
+        if (node == nullptr)
+            return;
         result.push_back(node->val);
         preOrderRecursive(node->left);
         preOrderRecursive(node->right);
     }
-    void inOrderRecursive(BinaryTreeNode *node) {
-        if (node == nullptr) return;
+    void inOrderRecursive(TreeNode *node) {
+        if (node == nullptr)
+            return;
         inOrderRecursive(node->left);
         result.push_back(node->val);
         inOrderRecursive(node->right);
     }
-    void postOrderRecursive(BinaryTreeNode *node) {
-        if (node == nullptr) return;
+    void postOrderRecursive(TreeNode *node) {
+        if (node == nullptr)
+            return;
         postOrderRecursive(node->left);
         postOrderRecursive(node->right);
         result.push_back(node->val);
@@ -150,8 +156,7 @@ class Traversal {
 //格式化打印vector内容
 void printVector(vector<int> data) {
     cout << "[";
-    for (vector<int>::iterator iter = data.begin(); iter != data.end();
-         iter++) {
+    for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++) {
         if (iter != data.end() - 1)
             cout << *iter << "-";
         else
@@ -160,14 +165,14 @@ void printVector(vector<int> data) {
     cout << "]";
 }
 int main() {
-    BinaryTreeNode *treeA = new BinaryTreeNode(1);
-    treeA->left = new BinaryTreeNode(2);
-    treeA->right = new BinaryTreeNode(3);
-    treeA->left->left = new BinaryTreeNode(4);
-    treeA->left->right = new BinaryTreeNode(5);
-    treeA->right->left = new BinaryTreeNode(6);
-    treeA->right->right = new BinaryTreeNode(7);
-    treeA->left->left->left = new BinaryTreeNode(8);
+    TreeNode *treeA = new TreeNode(1);
+    treeA->left = new TreeNode(2);
+    treeA->right = new TreeNode(3);
+    treeA->left->left = new TreeNode(4);
+    treeA->left->right = new TreeNode(5);
+    treeA->right->left = new TreeNode(6);
+    treeA->right->right = new TreeNode(7);
+    treeA->left->left->left = new TreeNode(8);
     Traversal t(treeA);
 
     vector<vector<int>> levelResult = t.levelTravesal();
