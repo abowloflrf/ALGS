@@ -19,17 +19,13 @@ using namespace std;
 class Solution {
   public:
     void moveZeroes(vector<int> &nums) {
-        int lastMovePosition = -1;
+        int p = 0;
         for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] != 0) {
-                lastMovePosition++;
-                nums[lastMovePosition] = nums[i];
-            }
+            if (nums[i] != 0)
+                nums[p++] = nums[i];
         }
-        // 后面部分填0
-        lastMovePosition++;
-        for (; lastMovePosition < nums.size(); lastMovePosition++) {
-            nums[lastMovePosition] = 0;
+        for (int i = p; i < nums.size(); i++) {
+            nums[i] = 0;
         }
     }
 };
