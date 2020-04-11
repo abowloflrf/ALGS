@@ -25,4 +25,11 @@ class Node {
     }
 };
 
+class DirectedGraphNode {
+  public:
+    int label;
+    vector<DirectedGraphNode *> neighbors;
+    DirectedGraphNode(int x) : label(x){};
+};
+
 #endif
