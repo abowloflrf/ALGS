@@ -12,11 +12,13 @@ func partition(arr []int, lo, hi int) int {
 	pivot := arr[hi]
 	idx := lo
 	for j := lo; j < hi; j++ {
+		// 比基准数小则交换位置
 		if arr[j] < pivot {
 			arr[idx], arr[j] = arr[j], arr[idx]
-			idx = idx + 1
+			idx = idx + 1 // idx记录的是换到了哪一位
 		}
 	}
+	// 换完之后将基准数放到最后换完的下一个位置，这样在基准数前面的数都比它小，在后面的都比它大
 	arr[idx], arr[hi] = arr[hi], arr[idx]
 	return idx
 }

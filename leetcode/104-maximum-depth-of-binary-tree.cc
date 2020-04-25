@@ -36,7 +36,8 @@
  */
 
 #include "./utils/tree.h"
-#include <bits/stdc++.h>
+#include <deque>
+#include <vector>
 using namespace std;
 
 // @lc code=start
@@ -55,12 +56,9 @@ class Solution {
     int maxDepth(TreeNode *root) {
         if (root == nullptr)
             return 0;
-        if (root->left && root->right)
-            return max(maxDepth(root->left), maxDepth(root->right)) + 1;
-        if (!root->left && root->right)
-            return maxDepth(root->right) + 1;
-        if (!root->right && root->left)
-            return maxDepth(root->left) + 1;
+        int leftHeight = maxDepth(root->left);
+        int rightHeight = maxDepth(root->right);
+        return max(leftHeight, rightHeight) + 1;
         return 1;
     }
 };
@@ -76,4 +74,29 @@ class Solution2 {
         return max(maximum_depth(root->left, depth + 1), maximum_depth(root->right, depth + 1));
     }
     int maxDepth(TreeNode *root) { return maximum_depth(root, 1); }
+};
+
+// 非递归方式 BFS 层次遍历
+class Solution3 {
+  public:
+    int maxDepth(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
+        deque<TreeNode *> Q;
+        Q.push_back(root);
+        int ans = 0;
+        while (!Q.empty()) {
+            int size = Q.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode *node = Q.front();
+                Q.pop_front();
+                if (node->left != nullptr)
+                    Q.push_back(node->left);
+                if (node->right != nullptr)
+                    Q.push_back(node->right);
+            }
+            ans++;
+        }
+        return ans;
+    }
 };
