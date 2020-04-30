@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // TreeNode 二叉树节点定义
 type TreeNode struct {
 	Val   int
@@ -79,24 +77,6 @@ func postOrderNoRecursive(root *TreeNode) []int {
 	return res
 }
 
-func f(arr [][]string) [][]string {
-	ans := [][]string{[]string{}}
-	for ia := range arr {
-		tmp := [][]string{}
-		for ir := range ans {
-			copyans := make([]string, len(ans[ir]))
-			copy(copyans, ans[ir])
-			for ib := range arr[ia] {
-				copyans = append(ans[ir], arr[ia][ib])
-				tmp = append(tmp, copyans)
-			}
-		}
-		ans = tmp
-	}
-	return ans
-}
 func main() {
-	r := f([][]string{[]string{"a", "b"}, []string{"c", "d"}})
-	fmt.Println(r)
 
 }
