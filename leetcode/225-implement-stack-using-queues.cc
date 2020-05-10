@@ -54,43 +54,52 @@ using namespace std;
 
 // @lc code=start
 class MyStack {
+  private:
+    queue<int> q1;
+    queue<int> q2;
+    int topEle;
+
   public:
     /** Initialize your data structure here. */
-    MyStack() {}
+    MyStack() {
+        q1 = {};
+        q2 = {};
+        topEle = -1;
+    }
 
     /** Push element x onto stack. */
     void push(int x) {
-        queueA.push(x);
+        q1.push(x);
         topEle = x;
     }
 
     /** Removes the element on top of the stack and returns that element. */
     int pop() {
-        while (queueA.size() > 1) {
-            topEle = queueA.front();
-            queueA.pop();
-            queueB.push(topEle);
+        // 把q1全部pop到q2，q1只剩最后一个就是要pop的目标
+        // 同时最后一个从q1 pop出来的数为下一个topEle
+        while (q1.size() > 1) {
+            topEle = q1.front();
+            q1.pop();
+            q2.push(topEle);
         }
-        int popEle = queueA.front();
-        queueA.pop();
-
-        //交换ab两个队列
-        queue<int> tmp = queueA;
-        queueA = queueB;
-        queueB = tmp;
-        return popEle;
+        // 记录q1剩下的最后一个，然后pop掉
+        int target = q1.front();
+        q1.pop();
+        // q2 换回到 q1
+        q1 = q2;
+        q2 = {};
+        return target;
     }
 
     /** Get the top element. */
-    int top() { return topEle; }
+    int top() {
+        if (q1.empty())
+            return -1;
+        return topEle;
+    }
 
     /** Returns whether the stack is empty. */
-    bool empty() { return queueA.empty(); }
-
-  private:
-    queue<int> queueA;
-    queue<int> queueB;
-    int topEle;
+    bool empty() { return q1.empty(); }
 };
 
 /**
