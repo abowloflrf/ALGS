@@ -77,12 +77,11 @@ class Solution {
                 currLen++;
             } else {
                 // 出现过，则停止，
-                if (currLen > maxLen)
-                    maxLen = currLen;
+                maxLen = max(currLen, maxLen);
                 // 重新从上次出现的位置后计算长度
                 currLen = i - pos[s[i]];
             }
-            // 记录当前字符的位置，不过之前有没有出现过，覆盖掉位置值
+            // 记录当前字符的位置，不管之前有没有出现过，覆盖掉位置值
             pos[s[i]] = i;
         }
         if (currLen > maxLen)
