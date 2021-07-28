@@ -38,6 +38,7 @@ class Solution {
     int longestConsecutive(vector<int> &nums) {
         if (nums.size() == 0)
             return 0;
+        // 先将所有数保存到一个unordered_set里，方便查找，顺便能去重
         unordered_set<int> S;
         for (int n : nums) {
             S.insert(n);
@@ -45,7 +46,9 @@ class Solution {
 
         int res = 1;
         for (int n : nums) {
-            if (S.find(n - 1) == S.end()) { //这个剪枝条件非常关键
+            // 这个剪枝条件非常关键，保证这次计算的是连续序列的开始一个数
+            if (S.find(n - 1) == S.end()) { 
+                // 然后向后递增1判断是否在set里存在，并维护最长连续长度
                 int curr = n;
                 int currMax = 1;
                 while (S.find(n + 1) != S.end()) {

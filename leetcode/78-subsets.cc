@@ -44,16 +44,15 @@ using namespace std;
 class Solution {
   public:
     vector<vector<int>> subsets(vector<int> &nums) {
-        const int size = nums.size();
         vector<vector<int>> res{{}};
         for (auto n : nums) {
             vector<vector<int>> added;
-            for (auto r : res) {
-                vector<int> newRes(r);
+            int sizeR = res.size();
+            for (int i = 0; i < sizeR; i++) {
+                vector<int> newRes(res[i]);
                 newRes.push_back(n);
-                added.push_back(newRes);
+                res.push_back(newRes);
             }
-            res.insert(res.end(), added.begin(), added.end());
         }
         return res;
     }
