@@ -5,17 +5,18 @@ using namespace std;
 
 //构建堆的过程时间复杂度为O(n)
 void maxHeapify(vector<int>& data, int i, int n) {
-    //得到左右的索引
+    // 得到 i 的左右的子节点索引
     int indexMax = i, indexLeft = 2 * i + 1, indexRight = 2 * (i + 1);
 
-    //得到左右哪个值最大
+    // 得到左右哪个值最大
     if (indexLeft < n && data[i] < data[indexLeft]) {
         indexMax = indexLeft;
     }
     if (indexRight < n && data[indexMax] < data[indexRight]) {
         indexMax = indexRight;
     }
-    //若左右有大于根节点的则作交换并递归调用
+
+    // 若左右有大于根节点的则作交换并递归调用
     if (indexMax != i) {
         swap(data[indexMax], data[i]);
         maxHeapify(data, indexMax, n);
