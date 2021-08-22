@@ -62,7 +62,7 @@ class Solution {
         return res;
     }
 
-    // start 当前判断到第几个
+    // start 当前判断到第几个，只会取从 start 开始后面的数字
     void dfs(int n, int k, int start, vector<int> &curr) {
         if (curr.size() == k) {
             res.push_back(curr);
