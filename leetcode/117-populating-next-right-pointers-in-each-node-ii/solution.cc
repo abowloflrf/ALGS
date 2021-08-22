@@ -1,21 +1,19 @@
 /*
- * @lc app=leetcode.cn id=116 lang=cpp
+ * @lc app=leetcode.cn id=117 lang=cpp
  *
- * [116] Populating Next Right Pointers in Each Node
+ * [117] Populating Next Right Pointers in Each Node II
  *
- * https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/description/
+ * https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/description/
  *
  * algorithms
- * Medium (70.22%)
- * Likes:    526
+ * Medium (60.91%)
+ * Likes:    438
  * Dislikes: 0
- * Total Accepted:    144.3K
- * Total Submissions: 205.5K
- * Testcase Example:  '[1,2,3,4,5,6,7]'
+ * Total Accepted:    83.8K
+ * Total Submissions: 137.5K
+ * Testcase Example:  '[1,2,3,4,5,nullptr,7]'
  *
- * You are given a perfect binary tree where all leaves are on the same level,
- * and every parent has two children. The binary tree has the following
- * definition:
+ * Given a binary tree
  *
  *
  * struct Node {
@@ -35,12 +33,12 @@
  * Example 1:
  *
  *
- * Input: root = [1,2,3,4,5,6,7]
- * Output: [1,#,2,3,#,4,5,6,7,#]
- * Explanation: Given the above perfect binary tree (Figure A), your function
- * should populate each next pointer to point to its next right node, just like
- * in Figure B. The serialized output is in level order as connected by the
- * next pointers, with '#' signifying the end of each level.
+ * Input: root = [1,2,3,4,5,nullptr,7]
+ * Output: [1,#,2,3,#,4,5,7,#]
+ * Explanation: Given the above binary tree (Figure A), your function should
+ * populate each next pointer to point to its next right node, just like in
+ * Figure B. The serialized output is in level order as connected by the next
+ * pointers, with '#' signifying the end of each level.
  *
  *
  * Example 2:
@@ -54,8 +52,8 @@
  * Constraints:
  *
  *
- * The number of nodes in the tree is in the range [0, 2^12 - 1].
- * -1000 <= Node.val <= 1000
+ * The number of nodes in the tree is in the range [0, 6000].
+ * -100 <= Node.val <= 100
  *
  *
  *
@@ -68,10 +66,8 @@
  *
  *
  */
-
 #include <queue>
 using namespace std;
-
 class Node {
   public:
     int val;
@@ -85,27 +81,29 @@ class Node {
 
     Node(int _val, Node *_left, Node *_right, Node *_next) : val(_val), left(_left), right(_right), next(_next) {}
 };
+
 // @lc code=start
 
 class Solution {
   public:
     Node *connect(Node *root) {
-        deque<Node *> Q;
+        queue<Node *> Q;
         if (!root)
             return nullptr;
-        Q.push_back(root);
+        Q.push(root);
         while (!Q.empty()) {
             int size = Q.size();
-            for (int i = size - 2; i >= 0; i--) {
-                Q[i]->next = Q[i + 1];
-            }
             for (int i = 0; i < size; i++) {
-                auto node = Q.front();
+                Node *node = Q.front();
+                Q.pop();
+                // 指向下一个节点，注意最后一个不要指向下一层了
+                if (i < size - 1)
+                    node->next = Q.front();
+
                 if (node->left)
-                    Q.push_back(node->left);
+                    Q.push(node->left);
                 if (node->right)
-                    Q.push_back(node->right);
-                Q.pop_front();
+                    Q.push(node->right);
             }
         }
         return root;
