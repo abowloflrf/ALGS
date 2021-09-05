@@ -38,6 +38,7 @@
  *
  * Follow-up: Could you solve the problem in linear time and in O(1) space?
  */
+#include <algorithm>
 #include <unordered_map>
 #include <vector>
 using namespace std;
