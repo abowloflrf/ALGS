@@ -59,7 +59,7 @@ using namespace std;
 // @lc code=start
 class Solution {
   public:
-    vector<int> singleNumber(vector<int> &nums) {
+    vector<int> singleNumber2(vector<int> &nums) {
         unordered_set<int> S;
         for (auto n : nums) {
             if (S.find(n) == S.end()) {
@@ -82,14 +82,14 @@ class Solution {
         }
         // 从低到高找到第一位非0的位置，初始为第一位
         int bitPosition = 1;
-        while (m & 1 == 0) {
+        while ((m & 1) == 0) {
             m >>= 1;           // 原数少一位
             bitPosition <<= 1; // 位置多一位
         }
         // 分两种情况再次遍历异或，相同的数字必然还是抵消，唯一的数字最后为出现
         int a = 0, b = 0;
         for (auto n : nums) {
-            if (n & bitPosition == 0) {
+            if ((n & bitPosition) == 0) {
                 a ^= n;
             } else {
                 b ^= n;
@@ -99,3 +99,10 @@ class Solution {
     }
 };
 // @lc code=end
+
+int main(int argc, char const *argv[]) {
+    Solution s;
+    vector<int> v = {1, 2, 5, 2};
+    auto a = s.singleNumber(v);
+    return 0;
+}
