@@ -72,43 +72,25 @@ using namespace std;
 class Solution {
   public:
     vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
-        // 暴力解法：
-        // vector<int> ans(nums1.size(), -1);
-        // for (int i = 0; i < nums1.size(); i++) {
-        //     bool found = false;
-        //     for (int j = 0; j < nums2.size(); j++) {
-        //         if (found) {
-        //             if (nums2[j] > nums1[i]) {
-        //                 ans[i] = nums2[j];
-        //                 break;
-        //             }
-        //         } else {
-        //             if (nums2[j] == nums1[i])
-        //                 found = true;
-        //         }
-        //     }
-        // }
-        // return ans;
-
         // map + 单调栈
         vector<int> ans(nums1.size(), -1);
-        stack<int> s;              // 栈中保存的元素是还没有找到下一个比它大的元素
-        unordered_map<int, int> m; // 保存数组2中每个元素及其下一个比它大的元素映射关系
+        stack<int> s; // 栈中保存的元素是还没有找到下一个比它大的元素
+
+        // 保存 nums1 的 val 与下标映射
+        unordered_map<int, int> m;
+        for (int i = 0; i < nums1.size(); i++) {
+            m[nums1[i]] = i;
+        }
 
         for (auto const &i : nums2) {
-            if (s.empty()) {
-                s.push(i);
-            }
             while (!s.empty() && s.top() < i) {
-                m[s.top()] = i;
+                auto miter = m.find(s.top());
+                if (miter != m.end()) {
+                    ans[miter->second] = i;
+                }
                 s.pop();
             }
             s.push(i);
-        }
-        for (int i = 0; i < nums1.size(); i++) {
-            if (!(m.find(nums1[i]) == m.end())) {
-                ans[i] = m[nums1[i]];
-            }
         }
         return ans;
     }

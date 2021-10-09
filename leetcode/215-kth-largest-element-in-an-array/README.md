@@ -40,7 +40,7 @@ class MinHeap {
             minHeapifyFromBottom(prtIdx);
         }
     }
-    // 从顶部与左右子节点比较并交换，若 idx 有大于左右子节点，则与小的交换
+    // 从顶部与左右子节点比较并交换，与左右节点中小的子节点的交换，若都大，则直接 return
     void minHeapifyFromTop(int idx) {
         int leftIdx = left(idx);
         int rightIdx = right(idx);

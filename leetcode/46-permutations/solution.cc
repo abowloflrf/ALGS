@@ -49,11 +49,13 @@ class Solution {
     }
 
   private:
+    // helper nums 的前 index 位确定的情况下，获取全排列的情况
     void helper(vector<int> &nums, int index, vector<vector<int>> &res) {
         if (index == nums.size() - 1) {
             res.push_back(nums);
             return;
         }
+        // 前 index 位都确定，因此第 index 位可能为后面所有数的情况，因此依次交换确定 index 位后递归调用
         for (int i = index; i < nums.size(); i++) {
             if (i == index) {
                 helper(nums, index + 1, res);
