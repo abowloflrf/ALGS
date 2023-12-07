@@ -49,16 +49,21 @@ using namespace std;
 class Solution {
   public:
     bool isSubsequence(string s, string t) {
+        // s 空字符串时也满足要求
+        if (s.size() == 0) {
+            return true;
+        }
         int idx = 0;
-        for (char &c : t) {
-            if (idx == s.size()) {
-                return true;
-            }
-            if (c == s[idx]) {
+        for (int i = 0; i < t.size(); i++) {
+            if (t[i] == s[idx]) {
                 idx++;
+                if (idx == s.size()) {
+                    return true;
+                }
+                continue;
             }
         }
-        return idx == s.size();
+        return false;
     }
 };
 // @lc code=end
