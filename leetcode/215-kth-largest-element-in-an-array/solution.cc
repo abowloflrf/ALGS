@@ -39,6 +39,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 // @lc code=start
@@ -147,7 +148,7 @@ class Solution {
         sort(nums.begin(), nums.end());
         return nums[nums.size() - k];
     }
-    // 4. 自己实现最小堆
+    // 4. 自己实现最小堆
     int findKthLargest4(vector<int> &nums, int k) {
         MinHeap h(nums.size());
         for (auto const i : nums) {
