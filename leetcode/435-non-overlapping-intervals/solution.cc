@@ -56,6 +56,7 @@
  *
  */
 #include <vector>
+#include <algorithm>
 using namespace std;
 // @lc code=start
 static bool comp(const vector<int> &a, const vector<int> &b) {
